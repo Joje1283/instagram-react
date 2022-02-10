@@ -1,0 +1,38 @@
+.app {
+  display: grid;  // CSS grid 활용
+  border: 3px solid #333;
+  width: 1024px;
+  margin: 10px auto;
+  max-width: 100%;
+  grid-template-columns: repeat(3, 1fr);  // 3칸의 컬럼을 만든다.
+  grid-template-areas:  // 각 컬럼에 들어갈 grid-area 지정
+    "header header header"
+    "contents contents sidebar"
+    "footer footer footer"
+  ;
+  gap: 1rem;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: header;
+    .page-title {
+
+    }
+    .search {
+
+    }
+    .topnav {
+
+    }
+  }
+  .contents {
+    grid-area: contents;
+  }
+  .sidebar {
+    grid-area: sidebar;
+  }
+  .footer {
+    grid-area: footer;
+  }
+}
