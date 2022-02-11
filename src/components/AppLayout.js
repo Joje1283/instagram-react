@@ -3,6 +3,7 @@ import "./AppLayout.scss"
 import { Input } from 'antd';
 import Menu from './Menu';
 import LogoImage from '../assets/logo.png'
+import SuggestionList from "./SuggestionList";
 
 const { Search } = Input;
 
@@ -21,7 +22,7 @@ export default function AppLayout({children}) {
         </div>
       </div>
       <div className="contents">{children}</div>
-      <div className="sidebar">sidebar...</div>
+      <div className="sidebar"><SuggestionList/></div>
       <div className="footer">
         &copy; 2022. Jaesik
       </div>
