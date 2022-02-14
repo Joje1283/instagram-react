@@ -1,6 +1,7 @@
 import React from "react";
 import {Avatar, Card} from "antd";
 import {HeartOutlined, HeartTwoTone} from '@ant-design/icons';
+import CommentList from "./CommentList";
 
 function Post({post, handleLike}) {
   const {author, photo, caption, location, is_like} = post;
@@ -26,6 +27,7 @@ function Post({post, handleLike}) {
           description={caption}
           style={{marginBottom: "0.5em"}}
         />
+        <CommentList post={post} />
       </Card>
     </div>
   )
