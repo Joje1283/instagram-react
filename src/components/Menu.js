@@ -1,13 +1,11 @@
 import { Menu as AntdMenu } from 'antd';
 import { SearchOutlined, HomeOutlined, PlusCircleOutlined, UserOutlined } from '@ant-design/icons';
-import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {useAppContext, deleteToken} from "../core/store";
 
 const { SubMenu } = AntdMenu;
 
 export default function Menu() {
-  const [current, setCurrent] = useState('home');
   const {dispatch} = useAppContext();
   const history = useHistory()
   const handleClick = e => {
@@ -21,7 +19,7 @@ export default function Menu() {
   };
   return (
     <>
-      <AntdMenu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
+      <AntdMenu onClick={handleClick} selectedKeys="home" mode="horizontal">
         <AntdMenu.Item key="home" icon={<HomeOutlined />}>
           Home
         </AntdMenu.Item>
