@@ -1,12 +1,23 @@
 import { Menu as AntdMenu } from 'antd';
 import { SearchOutlined, HomeOutlined, PlusCircleOutlined, UserOutlined } from '@ant-design/icons';
 import {useState} from "react";
+import {useHistory} from "react-router-dom";
+import {useAppContext, deleteToken} from "../core/store";
+
+const { SubMenu } = AntdMenu;
 
 export default function Menu() {
   const [current, setCurrent] = useState('home');
+  const {dispatch} = useAppContext();
+  const history = useHistory()
   const handleClick = e => {
     console.log('click ', e);
-    setCurrent(e.key);
+    if (e.key === 'home') {
+      history.push("/");
+    }
+    else if (e.key === 'logout') {
+      dispatch(deleteToken())
+    }
   };
   return (
     <>
@@ -20,9 +31,10 @@ export default function Menu() {
         <AntdMenu.Item key="search_person" icon={<SearchOutlined />}>
           person
         </AntdMenu.Item>
-        <AntdMenu.Item key="profile" icon={<UserOutlined />}>
-          profile
-        </AntdMenu.Item>
+        <SubMenu key="SubMenu" icon={<UserOutlined />} title="profile">
+            <AntdMenu.Item key="profile">프로필</AntdMenu.Item>
+            <AntdMenu.Item key="logout">로그아웃</AntdMenu.Item>
+        </SubMenu>
       </AntdMenu>
     </>
 
