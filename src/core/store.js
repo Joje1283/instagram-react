@@ -12,7 +12,7 @@ const AppContext = createContext();
 const reducer = (prevState, action) => {
   const {type} = action;
   if (type === SET_TOKEN) {
-    const { payload: jwtToken } = action;
+    const { payload: { jwtToken, refresh } } = action;
     const newState = {
       ...prevState,
       jwtToken,
@@ -20,6 +20,7 @@ const reducer = (prevState, action) => {
     }
     return UpdateWithSideEffect(newState, (state, dispatch) => {
       setStorageItem("jwtToken", jwtToken);
+      setStorageItem("refresh", refresh);
     });
   }
   else if (type === DELETE_TOKEN) {
@@ -55,5 +56,5 @@ const SET_TOKEN = 'APP/SET_TOKEN';
 const DELETE_TOKEN = 'APP/DELETE_TOKEN';
 
 // Action Creators
-export const setToken = token => ({type: SET_TOKEN, payload: token});
+export const setToken = tokens => ({type: SET_TOKEN, payload: tokens});
 export const deleteToken = () => ({type: DELETE_TOKEN});

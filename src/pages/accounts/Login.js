@@ -22,8 +22,8 @@ function Login() {
     setFieldErrors({});
     axiosInstance.post("/accounts/api/token/", data)
       .then(response => {
-        const {data: {access: jwtToken}} = response;
-        dispatch(setToken(jwtToken));
+        const {data: {access: jwtToken, refresh}} = response;
+        dispatch(setToken({jwtToken, refresh}));
         notification.open({
           message: '로그인 성공',
           description: '로그인 페이지로 이동합니다.',
